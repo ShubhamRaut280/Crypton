@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Crypto</string>
+    <string name="label">Search for a currency</string>
+</resources>
