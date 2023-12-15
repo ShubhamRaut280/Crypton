@@ -21,18 +21,21 @@ public class Adapter extends RecyclerView.Adapter<holder> {
 
     @NonNull
     @Override
-    public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.curr_layout, parent, false);
-        return new holder(itemView);
-    }
+        public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.curr_layout, parent, false);
+            return new holder(itemView);
+        }
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int position) {
     model item = list.get(position);
     holder.nameofCurr.setText(item.getName());
     holder.logoofCurr.setImageDrawable(item.getLogo());
-    holder.priceofCurr.setText(item.getPrice());
+    holder.priceofCurr.setText("$"+item.getPrice());
     holder.symbolofCurr.setText(item.getSymbol());
+    holder.date.setText("Last updated: "+item.getDate());
+
+
     }
 
     @Override

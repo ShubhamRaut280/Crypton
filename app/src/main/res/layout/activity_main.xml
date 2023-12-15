@@ -3,53 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    android:background="@color/black12"
     tools:context=".MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:startIconDrawable="@null"
-        app:boxCornerRadiusBottomEnd="15dp"
-        app:boxCornerRadiusBottomStart="15dp"
-        app:hintTextColor="@color/white"
-        android:textColorHint="@color/white"
-        app:boxCornerRadiusTopEnd="15dp"
-        app:boxCornerRadiusTopStart="15dp"
-        android:layout_margin="10dp"
-        app:boxBackgroundColor="@color/black1221"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
+            android:id="@+id/searchbar"
             android:layout_width="match_parent"
-            android:ems="20"
-            android:shadowRadius="20"
             android:layout_height="50dp"
-            />
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColorHint="@color/black"
+            android:background="@drawable/rounded_search_bg_xml"
+            android:hint="@string/label"
+            android:imeOptions="actionSearch"
+            android:padding="12dp"
+            android:paddingStart="30dp"
+            android:singleLine="true" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/recycler"
-        android:layout_height="669dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/curr_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      android:layout_below="@+id/searchbar"
+        tools:listitem="@layout/curr_layout" />
+
+    <TextView
+        android:id="@+id/errormsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/popins"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="Could not load results check internet connection!!"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchbar" />
+        tools:layout_editor_absoluteY="366dp" />
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

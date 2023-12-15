@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shubham.crypto.R;
 
 public class holder extends RecyclerView.ViewHolder {
-    TextView nameofCurr, priceofCurr, symbolofCurr;
+    TextView nameofCurr, priceofCurr, symbolofCurr, errormsg,date;
     ImageView logoofCurr;
     public holder(@NonNull View itemView) {
         super(itemView);
@@ -20,5 +20,7 @@ public class holder extends RecyclerView.ViewHolder {
         priceofCurr = itemView.findViewById(R.id.price);
         symbolofCurr = itemView.findViewById(R.id.symbol);
         logoofCurr = itemView.findViewById(R.id.logo);
+        errormsg = itemView.findViewById(R.id.errormsg);
+        date = itemView.findViewById(R.id.date);
     }
 }
