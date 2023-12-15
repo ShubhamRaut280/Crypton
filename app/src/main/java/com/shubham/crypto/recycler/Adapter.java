@@ -19,12 +19,16 @@ public class Adapter extends RecyclerView.Adapter<holder> {
         this.list = list;
     }
 
+
     @NonNull
     @Override
         public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.curr_layout, parent, false);
             return new holder(itemView);
         }
+
+
+
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int position) {
@@ -37,6 +41,8 @@ public class Adapter extends RecyclerView.Adapter<holder> {
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
