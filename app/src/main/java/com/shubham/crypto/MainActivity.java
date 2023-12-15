@@ -4,9 +4,12 @@ import static android.content.ContentValues.TAG;
 import static android.view.View.GONE;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,12 +17,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shubham.crypto.Api_Related.Crypto;
 import com.shubham.crypto.Api_Related.Cryptodata.CryptoData;
 import com.shubham.crypto.recycler.Adapter;
@@ -47,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     TextView error;
+    FloatingActionButton refresh;
     EditText searchbar;
     ProgressBar pb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.main)));
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Search");
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
@@ -60,8 +66,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         pb = findViewById(R.id.pb);
         error = findViewById(R.id.errormsg);
+        refresh = findViewById(R.id.refresh);
 
-         retrofitwork();
+
+        retrofitwork();
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                retrofitwork();
+                Toast.makeText(MainActivity.this, "Refreshed !!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         pb.setVisibility(View.VISIBLE);
@@ -72,6 +89,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getSupportActionBar().hide();
         getMenuInflater().inflate(R.menu.searchmenu,menu);
+        MenuItem item = menu.findItem(R.id.search_menu);
+        SearchView searchView =  (SearchView)item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -81,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void retrofitwork(){
+
+        recvlist.clear();
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://pro-api.coinmarketcap.com")

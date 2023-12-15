@@ -6,7 +6,6 @@ public class model {
     String name;
     String symbol;
     String price;
-    Drawable logo;
     String date;
 
     public String getName() {
@@ -33,13 +32,6 @@ public class model {
         this.price = price;
     }
 
-    public Drawable getLogo() {
-        return logo;
-    }
-
-    public void setLogo(Drawable logo) {
-        this.logo = logo;
-    }
 
     public String getDate() {
         return date;
@@ -53,7 +45,6 @@ public class model {
         this.name = name;
         this.symbol = symbol;
         this.price = price;
-        this.logo = logo;
         this.date = date;
     }
 }

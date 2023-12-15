@@ -1,23 +1,32 @@
 package com.shubham.crypto.recycler;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shubham.crypto.R;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<holder> {
+public class Adapter extends RecyclerView.Adapter<holder> implements Filterable {
 
-    ArrayList<model> list = new ArrayList<>();
+    ArrayList<model> mainlist;
+    ArrayList<model>backup;
 
     public Adapter(ArrayList<model> list) {
-        this.list = list;
+        this.mainlist = list;
+        this.backup = new ArrayList<>(list);
+
     }
+
+
 
 
     @NonNull
@@ -32,12 +41,16 @@ public class Adapter extends RecyclerView.Adapter<holder> {
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int position) {
-    model item = list.get(position);
+    model item = mainlist.get(position);
     holder.nameofCurr.setText(item.getName());
-    holder.logoofCurr.setImageDrawable(item.getLogo());
     holder.priceofCurr.setText("$"+item.getPrice());
     holder.symbolofCurr.setText(item.getSymbol());
     holder.date.setText("Last updated: "+item.getDate());
+
+        Log.d("FILTER_DEBUG", "i think the size of  list should not be null"+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
+
+
+
 
 
     }
@@ -46,6 +59,68 @@ public class Adapter extends RecyclerView.Adapter<holder> {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        Log.d("FILTER_DEBUG", "i think the size of filtered list should not be null inside itemcount "+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
+
+        return mainlist.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        Log.d("FILTER_DEBUG", "i think the size of filtered list should not be null inside getfilter "+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
+
+        return filter;
+    }
+
+    // anonyms inner class
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence keyword) {
+
+            Log.d("FILTER_DEBUG", "i think the size of filtered list should not be null inside perfomrm filtering"+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
+
+
+            ArrayList<model> filteredList = new ArrayList<>();
+            Log.d("FILTER_DEBUG", "i think keyoword is empty lets check " + keyword+ " its string casting : "+ keyword.toString().toLowerCase());
+
+
+            if (keyword.toString().isEmpty()) {
+                filteredList.addAll(backup);
+                Log.d("FILTER_DEBUG", "i think the size of filtered list should not be null" +filteredList.size()+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
+
+
+            }
+            else
+            {
+                for (model m :backup) {
+                    if (m.getName().toLowerCase().contains(keyword.toString().toLowerCase()))
+                    {
+                        Log.d("FILTER_DEBUG", "match found in input" + m.getName().toLowerCase()+" keyword is : "+ keyword.toString().toLowerCase());
+
+                        filteredList.add(m);
+
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values  = filteredList;
+
+            Log.d("FILTER_DEBUG", "Filtered Size: " + filteredList.size());
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults results) {
+
+            mainlist.clear();
+            mainlist.addAll((ArrayList<model>) results.values);
+            notifyDataSetChanged();
+            Log.d("FILTER_DEBUG", "list Size: " + mainlist.size());
+
+        }
+    };
+
+
+
 }
