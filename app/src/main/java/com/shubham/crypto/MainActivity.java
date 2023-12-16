@@ -87,21 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getSupportActionBar().hide();
         getMenuInflater().inflate(R.menu.searchmenu,menu);
         MenuItem item = menu.findItem(R.id.search_menu);
         SearchView searchView =  (SearchView)item.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                adapter.getFilter().filter(query);
+                adapter.getFilter(query);
+                adapter.notifyDataSetChanged();
 
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                adapter.getFilter(newText);
+                adapter.notifyDataSetChanged();
 
                 return false;
             }
