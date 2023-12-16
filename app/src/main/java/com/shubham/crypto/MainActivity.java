@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 retrofitwork();
-                Toast.makeText(MainActivity.this, "Refreshed !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Refreshing", Toast.LENGTH_SHORT).show();
             }
         });
 

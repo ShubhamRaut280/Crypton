@@ -51,10 +51,6 @@ public class Adapter extends RecyclerView.Adapter<holder>  {
 
         Log.d("FILTER_DEBUG", "i think the size of  list should not be null inside bind q"+" size of backup : "+backup.size()+" size of main list: "+ mainlist.size() );
 
-
-
-
-
     }
 
 
@@ -65,7 +61,6 @@ public class Adapter extends RecyclerView.Adapter<holder>  {
 
         return mainlist.size();
     }
-
 
     public void getFilter(String keyword) {
 
