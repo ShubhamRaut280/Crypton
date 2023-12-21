@@ -55,6 +55,6 @@ This project is licensed under the MIT License, which means you are free to use,
 Special thanks to CoinMarketCap API for providing the cryptocurrency data through their API.
 Contact
 For any questions or feedback, feel free to contact the project maintainers:
-
+Shubham Raut rautshubham280@gmail.com
 Yash Jadhav yash.s.jadhav124@gmail.com
 Happy coding! 🚀
