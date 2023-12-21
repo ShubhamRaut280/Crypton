@@ -1,9 +1,9 @@
-# Cryptocurrency Viewer Android App
+# Crypton
 
 
 ## Overview
 
-The Cryptocurrency Viewer Android App is a mobile application that provides real-time information about various cryptocurrencies, including their prices and additional data. Users can easily explore and search for specific currencies, making it a convenient tool for staying updated on the dynamic world of cryptocurrencies.
+The Crypton Android App is a mobile application that provides real-time information about various cryptocurrencies, including their prices and additional data. Users can easily explore and search for specific currencies, making it a convenient tool for staying updated on the dynamic world of cryptocurrencies.
 
 
 ## Features
@@ -14,7 +14,7 @@ JSON Operations with GSON: GSON is used for handling operations related to JSON,
 
 
 ## Getting Started
-To get started with the Cryptocurrency Viewer Android App, follow these steps:
+To get started with the Crypton Android App, follow these steps:
 
 1. ### Clone the Repository:
 
