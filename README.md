@@ -22,7 +22,7 @@ To get started with the Crypton Android App, follow these steps:
 
   ```
   bash
-  git clone https://github.com/Mr-JackSparrow/Crypton.git
+  git clone https://github.com/ShubhamRaut280/Crypton.git
   ```
 
 2. ### Open in Android Studio:
