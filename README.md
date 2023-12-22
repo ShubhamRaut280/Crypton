@@ -5,6 +5,8 @@
 
 The Crypton Android App is a mobile application that provides real-time information about various cryptocurrencies, including their prices and additional data. Users can easily explore and search for specific currencies, making it a convenient tool for staying updated on the dynamic world of cryptocurrencies.
 
+# Demo video
+https://github.com/ShubhamRaut280/Crypton/assets/124999374/1ac96386-48af-497e-b537-6023c20f6aed
 
 ## Features
 Real-time Data: The app fetches up-to-date information about cryptocurrencies in real-time, ensuring that users have access to the latest market data.
